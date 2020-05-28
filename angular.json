@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -88,7 +88,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "testShop"
+    }
+  },
+  "defaultProject": "testShop",
+  "cli": {
+    "analytics": "0994f67d-a4b2-4f28-b5b6-aaceeeb2db1f"
+  }
 }

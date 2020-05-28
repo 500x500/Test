@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import './app-theme';
+
+// Include material core styles.
+@include mat-core();
+
+// Define the light theme.
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+
+$theme: mat-light-theme($primary, $accent);
+$mat-toolbar-height-desktop: 96px !default;
+@include angular-material-theme($theme);
+//@include bar-theme($theme);
+@include material-docs-app-theme($theme);
+
+mat-form-field.mat-form-field {
+  font-size: 17px;
+}
+mat-checkbox {
+  font-size: 17px;
+}

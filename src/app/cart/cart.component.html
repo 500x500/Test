@@ -1,0 +1,91 @@
+<mat-card>
+  <mat-card-title>Оформление заказа</mat-card-title>
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step>
+      <form [formGroup]="firstFormGroup" class="first_step">
+        <ng-template matStepLabel>Заполните свои данные</ng-template>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Имя</mat-label>
+            <input matInput placeholder="ФИО" formControlName="name" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Мобильный телефон</mat-label>
+            <input matInput prefix="+7" mask="-000-000-00-00" placeholder="Мобильный телефон" formControlName="mobile"
+                   required>
+          </mat-form-field>
+        </div>
+        <mat-checkbox formControlName="personalData">Согласие на обработку персональных данных</mat-checkbox>
+        <div>
+          <button color="primary" mat-button matStepperNext [disabled]="firstFormGroup.invalid">Следующий шаг</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Проверьте Ваш заказ</ng-template>
+        <mat-list>
+          <mat-list-item
+            *ngFor="let c of order">{{c.name + ', Формат ' + c.attr.format + ', Цена ' + c.price}}</mat-list-item>
+          <p>Всего наименований: {{order.length}}</p>
+        </mat-list>
+        <div>
+          <button mat-button matStepperPrevious>Назад</button>
+          <button color="primary" mat-button matStepperNext>Следующий шаг</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="snilsAndPhotoGroup">
+      <form [formGroup]="snilsAndPhotoGroup">
+        <ng-template matStepLabel>СНИЛС и Фото</ng-template>
+        <mat-form-field appearance="outline" class="snils">
+          <mat-label>СНИЛС</mat-label>
+          <input #snilsInput id="snils" matInput formControlName="snils" type="text" mask="000-000-000 00"
+                 autocomplete="off">
+          <mat-error *ngIf="snilsAndPhotoGroup.get('snils').hasError('invalidSnils')">
+            {{snilsAndPhotoGroup.get('snils').getError('invalidSnils')}}
+          </mat-error>
+          <mat-error *ngIf="snilsAndPhotoGroup.get('snils').hasError('required')">
+            Поле обязательно для заполнения
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Назад</button>
+          <button color="primary" mat-button matStepperNext>Следующий шаг</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Информация о доставке</ng-template>
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Доставка</mat-label>-->
+<!--        <mat-select [formControl]="delivery">-->
+<!--          <mat-option value="0">Москва самовывоз</mat-option>-->
+<!--          <mat-option value="1">Воронеж самовывоз</mat-option>-->
+<!--          <mat-option value="2">Доставка почтой</mat-option>-->
+<!--        </mat-select>-->
+<!--        <div *ngIf="showDeliveryData">-->
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Индекс</mat-label>-->
+<!--            <input matInput formControlName="index">-->
+<!--          </mat-form-field>-->
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Адрес</mat-label>-->
+<!--            <input matInput formControlName="address">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--      </mat-form-field>-->
+      <div>
+        <button mat-button matStepperPrevious>Назад</button>
+        <button mat-button matStepperNext>Следующий шаг</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Ваш заказ</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Назад</button>
+        <button color="primary" mat-button matStepperNext>Отправить</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

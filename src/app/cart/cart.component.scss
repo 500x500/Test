@@ -1,0 +1,14 @@
+.first_step {
+  display: flex;
+  flex-direction: column;
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+  mat-form-field {
+    width: 49%;
+  }
+}
+.snils {
+  width: 100%
+}
